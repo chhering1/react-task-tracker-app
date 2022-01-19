@@ -11,6 +11,12 @@
       "day": "25 Jan 4pm",
       "reminder": true,
       "id": 3
+    },
+    {
+      "text": "Do shopping ",
+      "day": "fredag 21 Jan",
+      "reminder": false,
+      "id": 4
     }
   ]
 }

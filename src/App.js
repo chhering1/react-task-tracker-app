@@ -1,5 +1,5 @@
 import { useState,useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import About from './components/About';
 import AddTask from './components/AddTasks';
 import Footer from './components/Footer';
@@ -30,9 +30,6 @@ const addTask = (task) => {
            .then( res => res.json())
            .then ( result => setTasks([...tasks, result]) )
 
-    // const id = Math.floor(Math.random() * 10000) + 1
-    // const newTask = { id,  ...task}
-    // setTasks([...tasks, newTask])
 }
 
   //delete task
@@ -77,21 +74,36 @@ const addTask = (task) => {
     <Router>
     <div className="container">
       <Header onAdd = {() => setShowAddTask(!showAddTask)} showAdd={showAddTask}/>
-      {showAddTask && <AddTask onAdd={addTask}/> }
 
-      { tasks.length > 0 ? (
-          <Tasks tasks={tasks} onDelete = {deleteTask} onToggle={toggleReminder}/>
-               ) : (
-                  'No Tasks to Show'
-                 )}
-                 <Routes>
-                 <Route path="/about" component={About}></Route>
+      <Routes>
 
-                 </Routes>
+           <Route path="/"  element={
+             <>
+                   {showAddTask && <AddTask onAdd={addTask}/> }
+
+{ tasks.length > 0 ? (
+    <Tasks tasks={tasks} onDelete = {deleteTask} onToggle={toggleReminder}/>
+         ) : (
+            'No Tasks to Show'
+           )}
+             </>
+           }
+           >
+      
+
+</Route>
+               
+               <Route   path="/about" element={<About />}/>
+               </Routes>   
+                     
+                   
+
+                 
+
             <Footer />
     </div>
     </Router>
-  );
-}
-
+  
+  )
+               }
 export default App;
