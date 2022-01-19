@@ -9,13 +9,13 @@
     {
       "text": "Pack your things",
       "day": "25 Jan 4pm",
-      "reminder": true,
+      "reminder": false,
       "id": 3
     },
     {
       "text": "Do shopping ",
       "day": "fredag 21 Jan",
-      "reminder": false,
+      "reminder": true,
       "id": 4
     }
   ]

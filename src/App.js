@@ -4,6 +4,7 @@ import About from './components/About';
 import AddTask from './components/AddTasks';
 import Footer from './components/Footer';
 import Header from './components/Header'
+import TaskDetails from './components/TaskDetails';
 import Tasks from './components/Tasks';
 
 
@@ -19,7 +20,7 @@ function App() {
   }, []);
 
   //add task
-const addTask = (task) => {
+ const addTask = (task) => {
   fetch('http://localhost:5000/tasks', {
              method: 'POST',
              headers: {
@@ -50,7 +51,7 @@ const addTask = (task) => {
   //Toggle reminder
   const toggleReminder = async  (id) => {
       const taskToToggle =  await fetchTask(id)
-      console.log(taskToToggle)
+      // console.log(taskToToggle)
       const updatedTask = { ...taskToToggle, reminder: !taskToToggle.reminder}
 
         fetch(`http://localhost:5000/tasks/${id}`, {
@@ -81,25 +82,18 @@ const addTask = (task) => {
              <>
                    {showAddTask && <AddTask onAdd={addTask}/> }
 
-{ tasks.length > 0 ? (
-    <Tasks tasks={tasks} onDelete = {deleteTask} onToggle={toggleReminder}/>
-         ) : (
-            'No Tasks to Show'
-           )}
+                   { tasks.length > 0 ? (
+                           <Tasks tasks={tasks} onDelete = {deleteTask} onToggle={toggleReminder}/>
+                               ) : (
+                               'No Tasks to Show'
+                           )}
              </>
-           }
-           >
-      
-
-</Route>
+           } > </Route>
                
                <Route   path="/about" element={<About />}/>
+               <Route path="/task/:id" element={ <TaskDetails /> } />
                </Routes>   
-                     
-                   
-
-                 
-
+              
             <Footer />
     </div>
     </Router>
